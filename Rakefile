@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "cantango-api"
   gem.homepage = "http://github.com/kristianmandrup/cantango-api"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{The main API for CanTango}
+  gem.description = %Q{Ability, Can, Scope, Session, User, Account and more APIs for CanTango}
   gem.email = "kristian@unity3d.com"
   gem.authors = ["Kristian Mandrup"]
   # dependencies defined in Gemfile
