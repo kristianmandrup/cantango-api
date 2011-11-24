@@ -14,8 +14,8 @@ CanTango.configure do |config|
   config.accounts.register  :user, UserAccount
   config.accounts.register  :admin, AdminAccount
 
-  config.cache_engine.set :off
-  config.permit_engine.set :on
+  #config.cache_engine.set :off
+  #config.permit_engine.set :on
 end
 
 class UserRolePermit < CanTango::RolePermit
@@ -42,7 +42,7 @@ class Context
   include_and_extend ::CurrentUserAccounts
 end
 
-describe CanTango::Api::UserAccount::Can do
+describe "CanTango::Api::Can::Account" do
   subject { Context.new }
 
   describe 'user_account' do
