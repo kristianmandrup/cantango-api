@@ -1,7 +1,6 @@
-require 'rspec'
-require 'cantango'
-require 'fixtures/models'
-require 'cantango/api/current_user_accounts'
+require 'spec_helper'
+
+require 'helpers/current_user_accounts'
 # require 'cantango/configuration/engines/store_engine_shared'
 
 class User

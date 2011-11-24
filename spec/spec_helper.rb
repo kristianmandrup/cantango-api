@@ -1,10 +1,11 @@
 require 'rspec'
+require 'require_all'
+
 require 'cantango/core'
 require 'cantango/api'
 
-# Requires supporting files with custom matchers and macros, etc,
-# in ./support/ and its subdirectories.
-Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].each {|f| require f}
+# require_all File.join("#{File.dirname(__FILE__)}", "support")
+require_all File.join("#{File.dirname(__FILE__)}", "fixtures")
 
 RSpec.configure do |config|
   
