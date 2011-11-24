@@ -1,6 +1,14 @@
 GIT
+  remote: git://github.com/kristianmandrup/cantango-config
+  revision: b4ed1ab82bf7b9e8da055d2fb21197a2d5767b86
+  specs:
+    cantango-config (0.1.0)
+      cantango-core
+      rails (>= 3.1)
+
+GIT
   remote: git://github.com/kristianmandrup/cantango-core
-  revision: 8c63aafa6bb0f01586e828a9ee69bf7648082340
+  revision: cf38d3ddeaa475a3d08678fbd281be39e58a2118
   specs:
     cantango-core (1.0.0.beta1)
       cancan (>= 1.4)
@@ -129,6 +137,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (>= 1.1.rc)
+  cantango-config!
   cantango-core!
   cutter
   database_cleaner

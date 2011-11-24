@@ -11,8 +11,8 @@ CanTango.configure do |config|
   config.users.register     :user, User
   config.users.register     :admin, Admin
 
-  config.user_accounts.register  :user, UserAccount
-  config.user_accounts.register  :admin, AdminAccount
+  config.accounts.register  :user, UserAccount
+  config.accounts.register  :admin, AdminAccount
 
   config.cache_engine.set :off
   config.permit_engine.set :on

@@ -1,7 +1,9 @@
 require 'rspec'
 require 'require_all'
 
+
 require 'cantango/core'
+require 'cantango/configuration'
 require 'cantango/api'
 
 # require_all File.join("#{File.dirname(__FILE__)}", "support")
