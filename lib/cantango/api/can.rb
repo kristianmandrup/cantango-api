@@ -1,7 +1,5 @@
-module CanTango
-  module Api
-    module Can
-      autoload_modules :User, :UserAccount
-    end
+module CanTango::Api
+  module Can
+    autoload_modules :User, :Account
   end
 end

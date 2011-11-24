@@ -1,5 +1,5 @@
 module CanTango::Api
-  module User
+  module Account
     module All
       def self.included base
         apis.each do |api|
@@ -12,8 +12,9 @@ module CanTango::Api
       end
 
       def clazz api
-        "CanTango::Api::#{api.to_s.camelize}::User".constantize
+        "CanTango::Api::#{api.to_s.camelize}::UserAccount".constantize
       end
     end
   end
 end
+
