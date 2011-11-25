@@ -1,8 +1,5 @@
-require 'rspec'
-require 'cantango'
-require 'fixtures/models'
-require 'cantango/api/current_users'
-require 'cantango/configuration/engines/store_engine_shared'
+require 'spec_helper'
+require 'helpers/current_users'
 
 CanTango.config.users.register :user, User
 CanTango.config.users.register :admin, Admin

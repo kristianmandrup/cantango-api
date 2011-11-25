@@ -1,7 +1,7 @@
 module CanTango
   module Api
-    module User
-      module Can
+    module Can
+      module User
         include Ability
         # Example: generated from types of accounts! (see below)
         # def admin_can?(*args)
