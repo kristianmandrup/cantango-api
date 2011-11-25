@@ -1,4 +1,6 @@
-require 'cantango/api/current_users'
+$LOAD_PATH.unshift File.dirname(__FILE__)
+
+require 'current_users'
 
 module CurrentUserAccounts
   include ::CurrentUsers
