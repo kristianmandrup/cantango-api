@@ -1,22 +1,20 @@
-require 'rspec'
-require 'cantango'
-require 'fixtures/models'
-require 'cantango/api/current_user_accounts'
+require 'spec_helper'
+
 # require 'cantango/configuration/engines/store_engine_shared'
 
 CanTango.configure do |config|
   config.users.register     :user, User
   config.users.register     :admin, Admin
 
-  config.user_accounts.register  :user, UserAccount
-  config.user_accounts.register  :admin, AdminAccount
+  config.accounts.register  :user, UserAccount
+  config.accounts.register  :admin, AdminAccount
 
-  config.cache_engine.set :off
-  config.permit_engine.set :on
+  # config.cache_engine.set :off
+  # config.permit_engine.set :on
 end
 
 class Context
-  include CanTango::Api::UserAccount::Ability
+  include CanTango::Api::Account::Ability
 
   include_and_extend ::CurrentUserAccounts
 end

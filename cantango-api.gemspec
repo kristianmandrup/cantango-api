@@ -62,6 +62,15 @@ Gem::Specification.new do |s|
     "spec/cantango/api/user_spec.rb",
     "spec/cantango/api_spec.rb",
     "spec/cantango_api_spec.rb",
+    "spec/fixtures/models.rb",
+    "spec/fixtures/models/admin.rb",
+    "spec/fixtures/models/admin_account.rb",
+    "spec/fixtures/models/items.rb",
+    "spec/fixtures/models/permission.rb",
+    "spec/fixtures/models/project.rb",
+    "spec/fixtures/models/simple_roles.rb",
+    "spec/fixtures/models/user.rb",
+    "spec/fixtures/models/user_account.rb",
     "spec/helpers/current_user_accounts.rb",
     "spec/helpers/current_users.rb",
     "spec/spec_helper.rb"
@@ -80,6 +89,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<sugar-high>, [">= 0.6.0"])
       s.add_runtime_dependency(%q<sweetloader>, ["~> 0.1.0"])
       s.add_runtime_dependency(%q<hashie>, [">= 0"])
+      s.add_runtime_dependency(%q<cantango-config>, [">= 0"])
       s.add_development_dependency(%q<bundler>, [">= 1.1.rc"])
       s.add_development_dependency(%q<jeweler>, [">= 1.6.4"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
@@ -89,6 +99,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<sugar-high>, [">= 0.6.0"])
       s.add_dependency(%q<sweetloader>, ["~> 0.1.0"])
       s.add_dependency(%q<hashie>, [">= 0"])
+      s.add_dependency(%q<cantango-config>, [">= 0"])
       s.add_dependency(%q<bundler>, [">= 1.1.rc"])
       s.add_dependency(%q<jeweler>, [">= 1.6.4"])
       s.add_dependency(%q<rcov>, [">= 0"])
@@ -99,6 +110,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<sugar-high>, [">= 0.6.0"])
     s.add_dependency(%q<sweetloader>, ["~> 0.1.0"])
     s.add_dependency(%q<hashie>, [">= 0"])
+    s.add_dependency(%q<cantango-config>, [">= 0"])
     s.add_dependency(%q<bundler>, [">= 1.1.rc"])
     s.add_dependency(%q<jeweler>, [">= 1.6.4"])
     s.add_dependency(%q<rcov>, [">= 0"])
