@@ -1,14 +1,6 @@
 GIT
-  remote: git://github.com/kristianmandrup/cantango-config
-  revision: b4ed1ab82bf7b9e8da055d2fb21197a2d5767b86
-  specs:
-    cantango-config (0.1.0)
-      cantango-core
-      rails (>= 3.1)
-
-GIT
-  remote: git://github.com/kristianmandrup/cantango-core
-  revision: cf38d3ddeaa475a3d08678fbd281be39e58a2118
+  remote: git://github.com/kristianmandrup/cantango-core.git
+  revision: 500101d5ccdc64bf5e4eaaa17f035b4babd6a2a7
   specs:
     cantango-core (1.0.0.beta1)
       cancan (>= 1.4)
@@ -137,12 +129,12 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (>= 1.1.rc)
-  cantango-config!
   cantango-core!
   cutter
   database_cleaner
   factory_girl
   forgery
+  hashie
   jeweler (>= 1.6.4)
   rails (>= 3.1)
   rcov
@@ -150,3 +142,5 @@ DEPENDENCIES
   rspec (>= 2.6.0)
   spork
   sqlite3
+  sugar-high (>= 0.6.0)
+  sweetloader (~> 0.1.0)
