@@ -2,6 +2,79 @@
 
 The main API for [CanTango](https://github.com/kristianmandrup/cantango)
 
+## Status: Dec 1 2011
+
+The API is being spec'ed...
+
+## Dependencies
+
+This extension depends on the CanTango [core](https://github.com/kristianmandrup/cantango-core) and follows the extension conventions as described there.
+
+## Core extensions
+
+* Macros
+  * User
+  * Account
+
+These macros allow registration os CanTango User and Account models.
+
+Usage example:
+
+```ruby
+class User
+	tango_user 
+end
+
+class Admin
+	tango_user 
+end
+
+class UserAccount
+	tango_account
+end
+
+class AdminAccount
+	tango_account
+end
+```
+
+## Main APIs
+
+The main API consists of the following:
+
+* Ability
+* Can
+* Model
+* Scope
+* Session
+
+Each of these have a specific variant for both `Account` and `User`.
+
+### Can API
+
+* Dsl
+  * Relation
+  * Scope
+
+The Dsl API extends the CanCan Ability API with Relation and Scope APIs.
+
+## Model APIs
+
+* Account
+* User
+
+Use by including the `All` module
+
+Usage example: 
+
+```ruby
+class User
+  include Cantango::Api::User::All
+end
+```
+
+Note: The `tango_user` and `tango_account` macros should include the relevant All module.
+
 ## Contributing to cantango-api
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet

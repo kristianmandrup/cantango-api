@@ -12,7 +12,7 @@ module CanTango::Api
       end
 
       def clazz api
-        "CanTango::Api::#{api.to_s.camelize}::UserAccount".constantize
+        "CanTango::Api::#{api.to_s.camelize}::Account".constantize
       end
     end
   end
