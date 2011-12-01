@@ -3,7 +3,8 @@ require 'sugar-high/blank'
 require 'hashie'
 require 'sweetloader'
 
-AutoLoader.namespaces = {:CanTango => 'cantango'}
+SweetLoader.namespaces = {:CanTango => 'cantango'}
+SweetLoader.mode = :require
 
 module CanTango
   module Api
@@ -24,3 +25,5 @@ module CanTango
     autoload_modules *apis.map{|api| api.to_s.camelize}
   end
 end
+
+require 'cantango/api_ext'
