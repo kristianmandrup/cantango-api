@@ -1,25 +1,24 @@
 require 'spec_helper'
-require 'helpers/current_users'
-
-CanTango.config.users.register :user, User
-CanTango.config.users.register :admin, Admin
 
 class Context
-  include CanTango::Api::User::Ability
-
-  include CurrentUsers
-  extend ::CurrentUsers
+  include CanTango::Api::Attributes
 end
 
-describe CanTango::Api::User::Ability do
+describe CanTango::Api::Attributes do
   subject { Context.new }
 
-  describe 'user_ability user' do
-    specify { subject.user_ability(subject.current_user).should be_a CanTango::Ability }
-  end
+  [:read, :edit].each do |action|
+    describe ":#{action} attribute" do
+      specify do 
+        subject.send(:"#{action}_attribute", :post).should == :"#{action}_attr_post"
+      end
+    end
 
-  describe 'user_ability admin' do
-    specify { subject.user_ability(subject.current_admin).should be_a CanTango::Ability }
+    describe ":#{action} attributes" do
+      specify do 
+        subject.send(:"#{action}_attributes", :post, :project).should include(:"#{action}_attr_post")
+      end
+    end
   end
 end
  
