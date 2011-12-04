@@ -31,7 +31,7 @@ module CanTango::Api
         end
 
         def self.is_account? account
-          ::CanTango.config.user_accounts.registered_class? account.class
+          ::CanTango.config.accounts.registered_class? account.class
         end
 
         def self.guest

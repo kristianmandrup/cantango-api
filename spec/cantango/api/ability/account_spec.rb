@@ -1,6 +1,5 @@
-require 'spec_helper'
-
-# require 'cantango/configuration/engines/store_engine_shared'
+require 'cantango/config'
+require 'fixtures/models'
 
 CanTango.configure do |config|
   config.users.register     :user, User
@@ -8,27 +7,27 @@ CanTango.configure do |config|
 
   config.accounts.register  :user, UserAccount
   config.accounts.register  :admin, AdminAccount
-
-  # config.cache_engine.set :off
-  # config.permit_engine.set :on
 end
 
+require 'spec_helper'
+require 'helpers/current_user_accounts'
+
 class Context
-  include CanTango::Api::Account::Ability
+  include CanTango::Api::Ability::Account
 
   include_and_extend ::CurrentUserAccounts
 end
 
-describe CanTango::Api::UserAccount::Ability do
+describe CanTango::Api::Ability::Account do
   subject { Context.new }
 
-  describe 'user_account_ability' do
-    specify { subject.user_account_ability(subject.current_user_account).should be_a CanTango::Ability }
-    specify { subject.user_account_ability(subject.current_admin_account).should be_a CanTango::Ability }
+  describe 'account_ability' do
+    specify { subject.account_ability(subject.current_user_account).should be_a CanTango::Ability::Executor }
+    specify { subject.account_ability(subject.current_admin_account).should be_a CanTango::Ability::Executor }
   end
 
   describe 'current_account_ability' do
-    specify { subject.current_account_ability(:user).should be_a CanTango::Ability }
-    specify { subject.current_account_ability(:admin).should be_a CanTango::Ability }
+    specify { subject.current_account_ability(:user).should be_a CanTango::Ability::Executor }
+    specify { subject.current_account_ability(:admin).should be_a CanTango::Ability::Executor }
   end
 end
