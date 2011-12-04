@@ -38,7 +38,7 @@ GEM
       rails (>= 3.1)
       sugar-high (>= 0.6.0)
       sweetloader (~> 0.1.6)
-    cantango-core (0.1.4)
+    cantango-core (0.1.5)
       cancan (>= 1.4)
       hashie
       rails (>= 3.0.1)

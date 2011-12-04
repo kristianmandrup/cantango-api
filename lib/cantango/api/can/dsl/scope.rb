@@ -1,5 +1,5 @@
 module CanTango
-  module Rules
+  module Dsl
     class Scope
       attr_reader :name, :permit
 

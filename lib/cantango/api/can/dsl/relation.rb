@@ -1,12 +1,12 @@
 require 'active_support/inflector'
 
 module CanTango
-  module Rules
+  module Dsl
     class Relation
       attr_reader :attribute, :permit, :scope, :models
 
-      include CanTango::Rules::Adaptor
-      include CanTango::Rules::RuleClass
+      include CanTango::Adaptor
+      include CanTango::CanCan::RuleClass
 
       def initialize attribute, permit, scope, *models, &block
         @attribute = attribute

@@ -8,8 +8,8 @@ SweetLoader.mode = :require
 
 module CanTango
   module Api
-    autoload_modules :Ability, :Account, :Attributes, :Can
-    autoload_modules :Common, :Options, :Model, :Scope, :Session, :User
+    autoload_modules :Attributes, :Options, :Common, :Ability, :Account, :Can
+    autoload_modules :Model, :Scope, :Session, :User
 
     def self.apis
       [:ability, :can, :scope, :session]

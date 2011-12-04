@@ -13,6 +13,7 @@ module CanTango::Api
       protected
 
       include CanTango::Api::Common
+      include CanTango::Api::Attributes
       include CanTango::Api::Options
 
       def get_ability_user_account user_type = :user

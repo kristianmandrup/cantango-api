@@ -1,7 +1,5 @@
 module CanTango::Api
   module Common
-    include CanTango::Api::Attributes
-
     def create_ability candidate, opts = {}
       config.ability.factory_build candidate, opts
     end
