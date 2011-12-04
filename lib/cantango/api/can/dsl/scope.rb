@@ -9,7 +9,7 @@ module CanTango
       end
 
       ::CanTango.config.user.relations.each do |relationship|
-        base.class_eval %{
+        class_eval %{
           def #{relationship}_of *models, &block
             options = models.extract_options!
             scope = options[:scope] || name

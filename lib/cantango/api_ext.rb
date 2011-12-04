@@ -1,5 +1,5 @@
 module CanTango
-  autoloader_scope :ns => {:CanTango => 'cantango/api_ext'} do
-    autoload_modules :Macros
+  sweet_scope :ns => {:CanTango => 'cantango/api_ext'} do
+    sweetload :Macros
   end
 end

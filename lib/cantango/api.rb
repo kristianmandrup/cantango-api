@@ -8,8 +8,8 @@ SweetLoader.mode = :require
 
 module CanTango
   module Api
-    autoload_modules :Attributes, :Options, :Common, :Ability, :Account, :Can
-    autoload_modules :Model, :Scope, :Session, :User
+    sweetload :Attributes, :Options, :Common, :Ability, :Account, :Can
+    sweetload :Model, :Scope, :Session, :User
 
     def self.apis
       [:ability, :can, :scope, :session]
@@ -22,7 +22,7 @@ module CanTango
     end
     
     # FIX - sweetloader, camelize there!
-    autoload_modules *apis.map{|api| api.to_s.camelize}
+    sweetload *apis.map{|api| api.to_s.camelize}
   end
 end
 
