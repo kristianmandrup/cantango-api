@@ -1,19 +1,17 @@
 module CanTango::Api
   module Account
-    module All
-      def self.included base
-        apis.each do |api|
-          base.send :include, clazz(api)
-        end
+    def self.included base
+      apis.each do |api|
+        base.send :include, clazz(api)
       end
+    end
 
-      def self.apis
-        [:ability, :can, :scope, :session]
-      end
+    def self.apis
+      [:ability, :can, :scope, :session]
+    end
 
-      def clazz api
-        "CanTango::Api::#{api.to_s.camelize}::Account".constantize
-      end
+    def self.clazz api
+      "CanTango::Api::#{api.to_s.camelize}::Account".constantize
     end
   end
 end

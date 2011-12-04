@@ -7,6 +7,7 @@ module CanTango::Api
         yield ab_scope if block
         ab_scope
       end
+      alias_method :user_scope, :scope_user
 
       def real_user scope, options = {}, &block
         scope_user scope, options.merge(:masquerade => false), &block

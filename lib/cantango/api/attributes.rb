@@ -2,7 +2,7 @@ module CanTango::Api
   module Attributes
     [:read, :edit].each do |action|
       define_method :"#{action}_attribute" do |name|
-        :"#{action}_attr_\#{name}"
+        :"#{action}_attr_#{name}"
       end
 
       define_method :"#{action}_attributes" do |*names|

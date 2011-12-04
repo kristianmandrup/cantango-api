@@ -1,14 +1,15 @@
 module CanTango::Api
   module Scope
     module Account
-      def account_scope scope, options = {}, &block
+      def scope_account scope, options = {}, &block
         account = scoped_account(scope)
         ab_scope = account_ability_scope(account, options)
         yield ab_scope if block
         ab_scope
       end
+      alias_method :account_scope, :scope_account
 
-      def as_real_account scope, options = {}, &block
+      def real_account scope, options = {}, &block
         scope_account scope, options.merge(:masquerade => false), &block
       end
 

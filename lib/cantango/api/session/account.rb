@@ -2,7 +2,7 @@ module CanTango::Api
   module Session
     module Account
       def self.included(base)
-        ::CanTango.config.user_accounts.registered.each do |type|
+        ::CanTango.config.accounts.registered.each do |type|
           base.class_eval %{
             def session_#{type}_account
               current_#{type}_account if respond_to? :current_#{type}_account

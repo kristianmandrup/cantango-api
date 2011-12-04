@@ -1,13 +1,12 @@
 module CanTango::Api
   module Ability
     module Account
-      def user_account_ability user_account, options = {}
-        @account_ability ||= create_ability(user_account, ability_options.merge(options))
+      def account_ability account, options = {}
+        @account_ability ||= create_ability(account, ability_options.merge(options))
       end
-      alias_method :account_ability, :user_account_ability
 
       def current_account_ability user_type = :user
-        user_account_ability get_ability_user_account
+        account_ability(get_ability_account user_type)
       end
 
       protected
@@ -16,7 +15,7 @@ module CanTango::Api
       include CanTango::Api::Attributes
       include CanTango::Api::Options
 
-      def get_ability_user_account user_type = :user
+      def get_ability_account user_type = :user
         account_meth = :"current_#{user_type}_account"
         return AbilityAccount.guest if !respond_to?(account_meth)
         AbilityAccount.resolve_account(send account_meth)
