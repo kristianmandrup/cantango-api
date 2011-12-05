@@ -1,9 +1,5 @@
-require 'rspec'
-require 'cantango'
-require 'simple_roles'
+require 'cantango/config'
 require 'fixtures/models'
-require 'cantango/api/current_users'
-# require 'cantango/configuration/engines/store_engine_shared'
 
 class User
   include_and_extend SimpleRoles
@@ -13,32 +9,32 @@ class Admin < User
 end
 
 CanTango.configure do |config|
-  config.users.register :user, User
-  config.users.register :admin, Admin
-
-  config.cache_engine.set :off
-  config.permit_engine.set :on
+  config.users.register     :user, User
+  config.users.register     :admin, Admin
 end
 
+require 'spec_helper'
+require 'helpers/current_user_accounts'
+
 class Context
-  include CanTango::Api::User::Ability
+  include CanTango::Api::Ability::User
 
   include_and_extend ::CurrentUsers
 end
 
-describe CanTango::Api::User::Ability do
+describe CanTango::Api::Ability::User do
   subject { Context.new }
 
   describe 'user_ability user' do
-    specify { subject.user_ability(subject.current_user).should be_a CanTango::Ability }
+    specify { subject.user_ability(subject.current_user).should be_a CanTango::Ability::Executor }
   end
 
   describe 'user_ability admin' do
-    specify { subject.user_ability(subject.current_admin).should be_a CanTango::Ability }
+    specify { subject.user_ability(subject.current_admin).should be_a CanTango::Ability::Executor }
   end
 
   describe 'current_user_ability :user' do
-    specify { subject.current_user_ability(:user).should be_a CanTango::Ability }
+    specify { subject.current_user_ability(:user).should be_a CanTango::Ability::Executor }
 
     it 'should set the :user user correctly on ability' do
       subject.current_user_ability(:user).user.should == subject.current_user
@@ -46,7 +42,7 @@ describe CanTango::Api::User::Ability do
   end
 
   describe 'current_user_ability :admin' do
-    specify { subject.current_user_ability(:admin).should be_a CanTango::Ability }
+    specify { subject.current_user_ability(:admin).should be_a CanTango::Ability::Executor }
 
     it 'should set the :admin user correctly on ability' do
       subject.current_user_ability(:admin).user.should == subject.current_admin
