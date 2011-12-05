@@ -2,10 +2,10 @@ require 'cantango/config'
 require 'fixtures/models'
 
 CanTango.configure do |config|
-  config.users.register     :user, User
+  config.users.register     :user,  User
   config.users.register     :admin, Admin
 
-  config.accounts.register  :user, UserAccount
+  config.accounts.register  :user,  UserAccount
   config.accounts.register  :admin, AdminAccount
 end
 

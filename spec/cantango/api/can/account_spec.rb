@@ -1,48 +1,24 @@
-require 'spec_helper'
-
-require 'helpers/current_user_accounts'
-# require 'cantango/configuration/engines/store_engine_shared'
-
-class User
-  include_and_extend SimpleRoles
-end
+require 'cantango/config'
+require 'fixtures/models'
 
 CanTango.configure do |config|
-  config.users.register     :user, User
+  config.users.register     :user,  User
   config.users.register     :admin, Admin
 
-  config.accounts.register  :user, UserAccount
+  config.accounts.register  :user,  UserAccount
   config.accounts.register  :admin, AdminAccount
-
-  #config.cache_engine.set :off
-  #config.permit_engine.set :on
 end
 
-class UserRolePermit < CanTango::RolePermit
-  def permit_rules
-    can :edit, Article
-    cannot :edit, User
-  end
-end
-
-class AdminRolePermit < CanTango::RolePermit
-  def permit_rules
-    can :edit, Article
-    cannot :edit, User 
-  end
-end
-
-class User
-  include CanTango::Users::Masquerade
-end
+require 'spec_helper'
+require 'helpers/current_user_accounts'
 
 class Context
-  include CanTango::Api::UserAccount::Can
+  include CanTango::Api::Can::Account
 
   include_and_extend ::CurrentUserAccounts
 end
 
-describe "CanTango::Api::Can::Account" do
+describe CanTango::Api::Can::Account do
   subject { Context.new }
 
   describe 'user_account' do
@@ -57,21 +33,6 @@ describe "CanTango::Api::Can::Account" do
   end
 
   describe 'admin_account' do
-    specify do
-      subject.admin_account_can?(:edit, Article).should be_true
-      subject.admin_account_can?(:edit, User).should be_false
-
-      subject.admin_account_cannot?(:edit, User).should be_true
-      subject.admin_account_cannot?(:edit, Article).should be_false
-    end
-  end
-
-  describe 'admin masquerades as user' do
-    before do
-      Context.current_admin.masquerade_as Context.current_user
-    end
-
-    # admin masquerading as user can do same as user
     specify do
       subject.admin_account_can?(:edit, Article).should be_true
       subject.admin_account_can?(:edit, User).should be_false

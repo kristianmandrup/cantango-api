@@ -2,7 +2,7 @@ module CanTango
   module Api
     module Can
       module User
-        include Ability
+        include CanTango::Api::Ability::User
         # Example: generated from types of accounts! (see below)
         # def admin_can?(*args)
         #   current_user_ability(:admin).can?(*args)
