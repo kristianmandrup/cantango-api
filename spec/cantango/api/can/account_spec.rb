@@ -7,6 +7,8 @@ CanTango.configure do |config|
 
   config.accounts.register  :user,  UserAccount
   config.accounts.register  :admin, AdminAccount
+  
+  config.modes.register :no_cache, CanTango::Ability::Mode::NoCache
 end
 
 require 'spec_helper'
@@ -18,10 +20,28 @@ class Context
   include_and_extend ::CurrentUserAccounts
 end
 
+module CanTango::Ability::Mode
+  class NoCache
+    def calculate_rules
+      puts "rules"
+      can :edit, Article
+      can :edit, User
+    end
+  end
+end
+
 describe CanTango::Api::Can::Account do
   subject { Context.new }
 
   describe 'user_account' do
+    specify do
+      subject.current_account_ability(:user).should be_a CanTango::Ability::Executor::Modal
+    end
+
+    specify do
+      subject.current_account_ability(:user).modes.should == [:no_cache]
+    end
+    
     # user can edit Article, not Admin
     specify do
       subject.user_account_can?(:edit, Article).should be_true
