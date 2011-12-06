@@ -6,7 +6,7 @@ group :default do
   gem 'sweetloader',      '~> 0.1.6'
   gem 'hashie'
   
-  gem 'cantango-config',  '~> 0.1.4'
+  gem 'cantango-config',  '~> 0.1.5'
   gem 'cantango-core',    '~> 0.1.7'
 end
 
