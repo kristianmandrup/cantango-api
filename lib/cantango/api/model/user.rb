@@ -17,23 +17,16 @@ module CanTango::Api
         raise "No account could be found for user: #{self}"
       end
 
-      def can? *args
-        ability.can?(*args)
-      end
-
-      def cannot? *args
-        ability.cannot?(*args)
-      end
+      # from sugar-high or Active Support
+      delegate :can?, :cannot?, :to => :ability
 
       protected
 
-      def ability
-        ability_class.new(active_user)
-      end
-  
-      def ability_class
-        CanTango::Ability::Executor::Modes
-      end
+      include CanTango::Api::Common
+
+      def ability opts = {}
+        create_ability active_user, opts = {}
+      end  
     end
   end
 end
