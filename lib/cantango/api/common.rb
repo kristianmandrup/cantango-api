@@ -11,7 +11,7 @@ module CanTango::Api
     protected
 
     def execution_modes
-      CanTango.config.ability.modes.registered || [:no_cache]
+      CanTango.config.ability.modes || [:no_cache]
     end
     
     def config

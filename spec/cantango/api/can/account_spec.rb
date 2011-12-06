@@ -41,6 +41,14 @@ describe CanTango::Api::Can::Account do
     specify do
       subject.current_account_ability(:user).modes.should == [:no_cache]
     end
+
+    specify do
+      subject.current_account_ability(:user).rules.should_not be_empty
+    end
+
+    specify do
+      subject.current_account_ability(:user).can?(:edit, Article).should be_true
+    end
     
     # user can edit Article, not Admin
     specify do
