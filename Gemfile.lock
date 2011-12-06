@@ -32,11 +32,11 @@ GEM
     arel (2.2.1)
     builder (3.0.0)
     cancan (1.6.7)
-    cantango-config (0.1.5)
-      cantango-core (~> 0.1.6)
+    cantango-config (0.1.7)
+      cantango-core (~> 0.1.7)
       hashie (~> 0.4.0)
       rails (>= 3.1)
-      sugar-high (>= 0.6.0)
+      sugar-high (>= 0.6.1)
       sweetloader (~> 0.1.6)
     cantango-core (0.1.7)
       cancan (>= 1.4)
@@ -130,7 +130,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (>= 1.1.rc)
-  cantango-config (~> 0.1.5)
+  cantango-config (~> 0.1.6)
   cantango-core (~> 0.1.7)
   cutter
   database_cleaner
@@ -144,5 +144,5 @@ DEPENDENCIES
   rspec (>= 2.6.0)
   spork
   sqlite3
-  sugar-high (>= 0.6.0)
+  sugar-high (>= 0.6.1)
   sweetloader (~> 0.1.6)

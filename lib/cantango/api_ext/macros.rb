@@ -5,3 +5,9 @@ module CanTango
     end
   end
 end
+
+class Class
+  include CanTango::Macros::Account
+  include CanTango::Macros::User
+end
+  

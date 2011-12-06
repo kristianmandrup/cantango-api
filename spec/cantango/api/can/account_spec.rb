@@ -8,7 +8,8 @@ CanTango.configure do |config|
   config.accounts.register  :user,  UserAccount
   config.accounts.register  :admin, AdminAccount
   
-  config.modes.register :no_cache, CanTango::Ability::Mode::NoCache
+  config.modes.register     :no_cache, CanTango::Ability::Mode::NoCache
+  config.ability.mode = :no_cache
 end
 
 require 'spec_helper'
@@ -23,9 +24,8 @@ end
 module CanTango::Ability::Mode
   class NoCache
     def calculate_rules
-      puts "rules"
       can :edit, Article
-      can :edit, User
+      cannot :edit, User
     end
   end
 end
@@ -40,6 +40,10 @@ describe CanTango::Api::Can::Account do
 
     specify do
       subject.current_account_ability(:user).modes.should == [:no_cache]
+    end
+
+    specify do
+      subject.current_account_ability(:user).should respond_to(:can?)
     end
 
     specify do

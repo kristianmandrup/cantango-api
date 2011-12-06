@@ -1,7 +1,8 @@
 module CanTango::Api
   module Common
     def create_ability candidate, opts = {}
-      config.ability.factory_build candidate, opts.merge(:modes => execution_modes)
+      ability = CanTango::Ability::Base.new candidate, opts
+      config.ability.factory_build ability, opts.merge(:modes => execution_modes)
     end
 
     def category label

@@ -1,113 +1,86 @@
-require 'rspec'
-require 'cantango'
-require 'simple_roles'
+require 'cantango/config'
 require 'fixtures/models'
-require 'cantango/api/current_users'
-# require 'cantango/configuration/engines/store_engine_shared'
-
-class User
-  include CanTango::Users::Masquerade
-  include_and_extend SimpleRoles
-
-  tango_user
-end
-
-class Admin < User
-  tango_user
-end
 
 CanTango.configure do |config|
-  config.cache_engine.set :off
-  config.permit_engine.set :on
+  config.users.register     :user,  User
+  config.users.register     :admin, Admin
+
+  config.accounts.register  :user,  UserAccount
+  config.accounts.register  :admin, AdminAccount
+  
+  config.modes.register     :no_cache, CanTango::Ability::Mode::NoCache
+  config.ability.mode = :no_cache
 end
 
-# puts "#{CanTango.config.users.registered_classes} : #{CanTango.config.users.registered}"
-
-class UserRolePermit < CanTango::RolePermit
-  def initialize ability
-    super
-  end
-
-  def permit_rules
-    can :edit, Article
-    cannot :edit, User
-  end
-end
-
-class AdminRolePermit < CanTango::RolePermit
-  def initialize ability
-    super
-  end
-
-  def permit_rules
-    can :edit, Article
-    cannot :edit, User
-  end
-end
+require 'spec_helper'
+require 'helpers/current_user_accounts'
 
 class Context
-  include CanTango::Api::User::Can
+  include CanTango::Api::Can::User
 
-  include_and_extend ::CurrentUsers
+  include_and_extend ::CurrentUserAccounts
 end
 
-describe CanTango::Api::User::Can do
+module CanTango::Ability::Mode
+  class NoCache
+    def calculate_rules
+      can :edit, Article
+      cannot :edit, User
+    end
+  end
+end
+
+describe CanTango::Api::Can::Account do
   subject { Context.new }
 
-  describe 'user_ability' do
-    specify { subject.user_ability(subject.current_user).should be_a CanTango::Ability }
-    specify { subject.user_ability(subject.current_admin).should be_a CanTango::Ability }
-  end
-
-  describe 'current_user_ability :user' do
-    specify { subject.current_user_ability(:user).should be_a CanTango::Ability }
-
-    it 'should set the :user user correctly on ability' do
-      subject.current_user_ability(:user).user.should == subject.current_user
+  describe 'user_account' do
+    specify do
+      subject.current_user_ability(:user).should be_a CanTango::Ability::Executor::Modal
     end
-  end
 
-  describe 'current_user_ability :admin' do
-    specify { subject.current_user_ability(:admin).should be_a CanTango::Ability }
-
-    it 'should set the :admin user correctly on ability' do
-      subject.current_user_ability(:admin).user.should == subject.current_admin
+    specify do
+      subject.current_user_ability(:user).modes.should == [:no_cache]
     end
-  end
 
-  describe 'user' do
-    specify { subject.current_user.role.should == 'user' }
+    specify do
+      subject.current_user_ability(:user).should respond_to(:can?)
+    end
 
+    specify do
+      subject.current_user_ability(:user).rules.should_not be_empty
+    end
+
+    specify do
+      subject.current_user_ability(:user).can?(:edit, Article).should be_true
+    end
+    
+    specify do
+      CanTango.config.users.registered.should include(:user)
+    end    
+    
     # user can edit Article, not Admin
-    specify { subject.user_can?(:edit, Article).should be_true }
-    specify { subject.user_can?(:edit, User).should be_false }
+    specify do
+      subject.user_can?(:edit, Article).should be_true
+      subject.user_can?(:edit, User).should be_false
 
-    specify { subject.user_cannot?(:edit, User).should be_true }
-    specify { subject.user_cannot?(:edit, Article).should be_false }
+      subject.user_cannot?(:edit, User).should be_true
+      subject.user_cannot?(:edit, Article).should be_false
+    end
   end
 
-  describe 'admin' do
-    specify { subject.current_admin.role.should == 'admin' }
-
-    specify { subject.admin_can?(:edit, Article).should be_true }
-    specify { subject.admin_can?(:edit, User).should be_false }
-
-    specify { subject.admin_cannot?(:edit, User).should be_true }
-    specify { subject.admin_cannot?(:edit, Article).should be_false }
-  end
-
-  describe 'admin masquerades as user' do
-    before do
-      Context.new.current_admin.masquerade_as Context.new.current_user
+  describe 'admin_user' do
+    specify do
+      CanTango.config.users.registered.should include(:admin)
     end
 
-    # admin masquerading as user can do same as user
-    specify { subject.admin_can?(:edit, Article).should be_true }
+    specify do
+      subject.admin_can?(:edit, Article).should be_true
+      subject.admin_can?(:edit, User).should be_false
 
-    specify { subject.admin_can?(:edit, User).should be_false }
-
-    specify { subject.admin_cannot?(:edit, User).should be_true }
-    specify { subject.admin_cannot?(:edit, Article).should be_false }
+      subject.admin_cannot?(:edit, User).should be_true
+      subject.admin_cannot?(:edit, Article).should be_false
+    end
   end
 end
+
 

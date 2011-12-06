@@ -3,8 +3,8 @@ module CanTango::Api
     module User
       attr_writer :active_user, :active_account, :ability_class
 
-      def self.included(base)
-        CanTango.config.users.register base
+      def self.included(clazz)
+        CanTango.config.users.register_user clazz
       end
 
       def active_user
@@ -26,7 +26,7 @@ module CanTango::Api
       end
 
       protected
-  
+
       def ability
         ability_class.new(active_user)
       end

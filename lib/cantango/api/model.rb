@@ -1,5 +1,5 @@
 module CanTango::Api
-  module Session
+  module Model
     autoload_modules :User, :Account
   end
 end
