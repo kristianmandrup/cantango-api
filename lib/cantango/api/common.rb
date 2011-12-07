@@ -1,7 +1,7 @@
 module CanTango::Api
   module Common
     def create_ability candidate, opts = {}
-      ability = CanTango::Ability::Base.new candidate, opts
+      ability = default_ability_class.new candidate, opts
       config.ability.factory_build ability, opts.merge(:modes => execution_modes)
     end
 
@@ -10,6 +10,10 @@ module CanTango::Api
     end
     
     protected
+
+    def default_ability_class
+      CanTango.config.ability.default_class
+    end
 
     def execution_modes
       CanTango.config.ability.modes || [:no_cache]
