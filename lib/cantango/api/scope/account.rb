@@ -19,7 +19,7 @@ module CanTango::Api
         CanTango::Ability::Scope.new user_account_ability(account, options)
       end
 
-      def scoped_acount scope
+      def scoped_account scope
         send(:"current_#{scope}_account")
       end
     end
