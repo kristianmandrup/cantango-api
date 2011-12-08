@@ -5,7 +5,7 @@ module CanTango::Api
       
       def scope_account scope, options = {}, &block
         account = scoped_account(scope)
-        ab_scope = account_ability_scope(account, options)
+        ab_scope = account_ability_scope(account, options.merge(:masquerade => true))
         yield ab_scope if block
         ab_scope
       end

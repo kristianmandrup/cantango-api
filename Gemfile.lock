@@ -32,15 +32,15 @@ GEM
     arel (2.2.1)
     builder (3.0.0)
     cancan (1.6.7)
-    cantango-config (0.1.8)
+    cantango-config (0.1.9.2)
       cantango-core (~> 0.1.9)
-      hashie (~> 0.4.0)
+      hashie (~> 1.2)
       rails (>= 3.1)
       sugar-high (>= 0.6.1)
       sweetloader (~> 0.1.6)
-    cantango-core (0.1.9.1)
+    cantango-core (0.1.9.2)
       cancan (>= 1.4)
-      hashie
+      hashie (~> 1.2)
       rails (>= 3.0.1)
       sugar-high (>= 0.6.0)
       sweetloader (~> 0.1.5)
@@ -55,7 +55,7 @@ GEM
       activesupport
     forgery (0.5.0)
     git (1.2.5)
-    hashie (0.4.0)
+    hashie (1.2.0)
     hike (1.2.1)
     i18n (0.6.0)
     jeweler (1.6.4)
@@ -130,13 +130,13 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (>= 1.1.rc)
-  cantango-config (~> 0.1.6)
-  cantango-core (~> 0.1.7)
+  cantango-config (>= 0.1.8.1)
+  cantango-core (>= 0.1.9.1)
   cutter
   database_cleaner
   factory_girl
   forgery
-  hashie
+  hashie (~> 1.2)
   jeweler (>= 1.6.4)
   rails (>= 3.1)
   rcov

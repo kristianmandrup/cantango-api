@@ -4,10 +4,10 @@ group :default do
   gem 'rails',            '>= 3.1'
   gem 'sugar-high',       '~> 0.6.2'
   gem 'sweetloader',      '~> 0.1.6'
-  gem 'hashie'
+  gem 'hashie',           '~> 1.2'
   
-  gem 'cantango-config',  '~> 0.1.6'
-  gem 'cantango-core',    '~> 0.1.7'
+  gem 'cantango-config',  '>= 0.1.8.1'
+  gem 'cantango-core',    '>= 0.1.9.1'
 end
 
 group :development do
@@ -18,6 +18,8 @@ end
 
 group :test do
   gem 'require_all', '~> 1.2.0'
+
+  # gem 'cantango-masquerade', :git => 'git://github.com/kristianmandrup/cantango-masquerade.git'
 
   gem 'forgery'
   gem 'sqlite3'
