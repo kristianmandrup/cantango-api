@@ -1,5 +1,8 @@
 module CanTango::Macros
   module Clazz
+    include CanTango::Macros::Account
+    include CanTango::Macros::User
+    
     def cantango type = nil
       # determine if user or account
       if !type
@@ -10,6 +13,5 @@ module CanTango::Macros
         raise ArgumentError, "Unable to determine type of class to register; Please specify :user or :account as argument"
       end
     end
-    alias_method :cantango_user, :tango_user
   end
 end

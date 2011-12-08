@@ -7,7 +7,6 @@ module CanTango
 end
 
 class Class
-  include CanTango::Macros::Account
-  include CanTango::Macros::User
+  include CanTango::Macros::Clazz
 end
   
