@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{cantango-api}
-  s.version = "0.0.0"
+  s.version = "0.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Kristian Mandrup}]
-  s.date = %q{2011-11-25}
+  s.date = %q{2011-12-08}
   s.description = %q{Ability, Can, Scope, Session, User, Account and more APIs for CanTango}
   s.email = %q{kristian@unity3d.com}
   s.extra_rdoc_files = [
@@ -50,16 +50,29 @@ Gem::Specification.new do |s|
     "lib/cantango/api/session/account.rb",
     "lib/cantango/api/session/user.rb",
     "lib/cantango/api/user.rb",
+    "lib/cantango/api_ext.rb",
+    "lib/cantango/api_ext/macros.rb",
+    "lib/cantango/api_ext/macros/account.rb",
+    "lib/cantango/api_ext/macros/clazz.rb",
+    "lib/cantango/api_ext/macros/user.rb",
     "spec/cantango/api/ability/account_spec.rb",
     "spec/cantango/api/ability/user_spec.rb",
     "spec/cantango/api/account_spec.rb",
     "spec/cantango/api/attributes_spec.rb",
     "spec/cantango/api/can/account_spec.rb",
     "spec/cantango/api/can/user_spec.rb",
+    "spec/cantango/api/common_spec.rb",
+    "spec/cantango/api/model/account_spec.rb",
+    "spec/cantango/api/model/user_spec.rb",
     "spec/cantango/api/options_spec.rb",
     "spec/cantango/api/scope/account_spec.rb",
     "spec/cantango/api/scope/user_spec.rb",
+    "spec/cantango/api/session/account_spec.rb",
+    "spec/cantango/api/session/user_spec.rb",
     "spec/cantango/api/user_spec.rb",
+    "spec/cantango/api_ext/macros/account_spec.rb",
+    "spec/cantango/api_ext/macros/clazz_spec.rb",
+    "spec/cantango/api_ext/macros/user_spec.rb",
     "spec/cantango/api_spec.rb",
     "spec/cantango_api_spec.rb",
     "spec/fixtures/models.rb",
@@ -86,20 +99,22 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<rails>, [">= 3.1"])
-      s.add_runtime_dependency(%q<sugar-high>, [">= 0.6.0"])
-      s.add_runtime_dependency(%q<sweetloader>, ["~> 0.1.0"])
-      s.add_runtime_dependency(%q<hashie>, [">= 0"])
-      s.add_runtime_dependency(%q<cantango-config>, [">= 0"])
+      s.add_runtime_dependency(%q<sugar-high>, ["~> 0.6.2"])
+      s.add_runtime_dependency(%q<sweetloader>, ["~> 0.1.6"])
+      s.add_runtime_dependency(%q<hashie>, ["~> 1.2"])
+      s.add_runtime_dependency(%q<cantango-config>, [">= 0.1.8.1"])
+      s.add_runtime_dependency(%q<cantango-core>, [">= 0.1.9.1"])
       s.add_development_dependency(%q<bundler>, [">= 1.1.rc"])
       s.add_development_dependency(%q<jeweler>, [">= 1.6.4"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 2.6.0"])
     else
       s.add_dependency(%q<rails>, [">= 3.1"])
-      s.add_dependency(%q<sugar-high>, [">= 0.6.0"])
-      s.add_dependency(%q<sweetloader>, ["~> 0.1.0"])
-      s.add_dependency(%q<hashie>, [">= 0"])
-      s.add_dependency(%q<cantango-config>, [">= 0"])
+      s.add_dependency(%q<sugar-high>, ["~> 0.6.2"])
+      s.add_dependency(%q<sweetloader>, ["~> 0.1.6"])
+      s.add_dependency(%q<hashie>, ["~> 1.2"])
+      s.add_dependency(%q<cantango-config>, [">= 0.1.8.1"])
+      s.add_dependency(%q<cantango-core>, [">= 0.1.9.1"])
       s.add_dependency(%q<bundler>, [">= 1.1.rc"])
       s.add_dependency(%q<jeweler>, [">= 1.6.4"])
       s.add_dependency(%q<rcov>, [">= 0"])
@@ -107,10 +122,11 @@ Gem::Specification.new do |s|
     end
   else
     s.add_dependency(%q<rails>, [">= 3.1"])
-    s.add_dependency(%q<sugar-high>, [">= 0.6.0"])
-    s.add_dependency(%q<sweetloader>, ["~> 0.1.0"])
-    s.add_dependency(%q<hashie>, [">= 0"])
-    s.add_dependency(%q<cantango-config>, [">= 0"])
+    s.add_dependency(%q<sugar-high>, ["~> 0.6.2"])
+    s.add_dependency(%q<sweetloader>, ["~> 0.1.6"])
+    s.add_dependency(%q<hashie>, ["~> 1.2"])
+    s.add_dependency(%q<cantango-config>, [">= 0.1.8.1"])
+    s.add_dependency(%q<cantango-core>, [">= 0.1.9.1"])
     s.add_dependency(%q<bundler>, [">= 1.1.rc"])
     s.add_dependency(%q<jeweler>, [">= 1.6.4"])
     s.add_dependency(%q<rcov>, [">= 0"])
