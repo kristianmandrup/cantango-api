@@ -4,7 +4,6 @@ require 'helpers/current_user_accounts'
 
 class Context
   include CanTango::Api::Scope::Account
-  include CanTango::Api::Masquerade::Account
 
   include_and_extend ::CurrentUserAccounts
 end
@@ -14,30 +13,35 @@ class UserAccount
 end
 
 class AdminAccount
-  cantango_account
+  tango_account :masquerade
 end
 
 describe CanTango::Api::Scope::Account do
   subject { Context.new }
 
   before do
-    subject.masquerade_as subject.current_admin_account
+    puts CanTango.config.accounts.registered
+    subject.current_admin_account.masquerade_as subject.current_user_account
+  end
+
+  describe 'registered accounts' do
+    specify { CanTango.config.accounts.registered.should include(:user, :admin) }
   end
 
   describe 'scope_account(scope, options)' do 
     specify do
-      subject.scope_account :user do |user|
-        user.candidate.class.should == subject.current_admin_account.class
+      subject.scope_account :user do |ability|
+        ability.subject.class.should == subject.current_user_account.class
       end
     end
   end
 
-  describe 'real_account(scope, options)' do
-    specify do
-      subject.real_account :user do |user|
-        user.candidate.class.should == subject.current_user_account.class
-        user.candidate.user.should == subject.current_user_account.user
-      end
-    end
-  end
+  # describe 'real_account(scope, options)' do
+  #   specify do
+  #     subject.real_account :user do |ability|
+  #       ability.candidate.class.should == subject.current_admin_account.class
+  #       ability.candidate.subject.should == subject.current_admin_account.user
+  #     end
+  #   end
+  # end
 end

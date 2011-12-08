@@ -4,6 +4,7 @@ module CanTango::Api
       attr_writer :active_user, :active_account, :ability_class
 
       def self.included(clazz)
+        puts "included: #{clazz}"
         CanTango.config.accounts.register_account clazz
       end
 

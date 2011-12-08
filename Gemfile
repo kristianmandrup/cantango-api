@@ -19,7 +19,7 @@ end
 group :test do
   gem 'require_all', '~> 1.2.0'
 
-  # gem 'cantango-masquerade', :git => 'git://github.com/kristianmandrup/cantango-masquerade.git'
+  gem 'cantango-masquerade', '~> 0.1.1'
 
   gem 'forgery'
   gem 'sqlite3'
