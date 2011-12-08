@@ -1,6 +1,8 @@
 module CanTango::Api
   module Scope
     module Account
+      include CanTango::Api::Ability::Account
+      
       def scope_account scope, options = {}, &block
         account = scoped_account(scope)
         ab_scope = account_ability_scope(account, options)
@@ -16,7 +18,7 @@ module CanTango::Api
       protected
 
       def account_ability_scope account, options = {}
-        CanTango::Ability::Scope.new user_account_ability(account, options)
+        CanTango::Scope::Ability.new account_ability(account, options)
       end
 
       def scoped_account scope
