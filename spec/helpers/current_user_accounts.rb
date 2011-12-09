@@ -12,6 +12,10 @@ module CurrentUserAccounts
   def current_user_account
     @current_user_account ||= ::UserAccount.new(current_user, :roles => [:user])
   end
+
+  def current_guest_account
+    @current_guest_account ||= ::UserAccount.new(current_guest, :roles => [:guest])
+  end
   
   def current_admin_account
     @current_admin_account ||= ::AdminAccount.new(current_admin, :roles => [:admin])

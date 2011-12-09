@@ -1,6 +1,8 @@
 module CanTango::Api
   module Scope
     module User
+      include CanTango::Api::Ability::User
+      
       def scope_user scope, options = {}, &block
         user = scoped_user(scope)
         ab_scope = user_ability_scope(user, options)
@@ -16,7 +18,7 @@ module CanTango::Api
       protected
 
       def user_ability_scope user, options = {}
-        CanTango::Ability::Scope.new user_ability(user, options)
+        CanTango::Scope::Ability.new user_ability(user, options)
       end
 
       def scoped_user scope

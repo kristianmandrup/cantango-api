@@ -15,11 +15,13 @@ module CanTango::Api
       # give me any logged in user or the guest user
       def any_account *types
         types = types.flatten.select_labels.map(&:to_sym)
-        c_account = ::CanTango.config.user_accounts.registered.each do |type|
+        types = types & ::CanTango.config.accounts.registered
+        accounts = types.map do |type|
           meth = :"current_#{type}_account"
-          send(meth) if respond_to?(meth) && (types.empty? || types.include?(user))
-        end.compact.first
-        c_account || guest_account
+          send(meth) if respond_to?(meth) && (types.empty? || types.include?(type))
+        end
+        chosen_account = accounts.compact.first
+        chosen_account || guest_account
       end
 
       def guest_account

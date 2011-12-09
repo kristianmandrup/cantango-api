@@ -12,21 +12,21 @@ class User
   cantango
 end
 
-class AdminUser
-  cantango
+class Admin
+  tango_user :masquerade
 end
 
 describe CanTango::Api::Scope::User do
   subject { Context.new }
 
   before do
-    subject.current_user.active_account = subject.current_admin
+    subject.current_admin.masquerade_as subject.current_user
   end
 
   describe 'scope_user(scope, options)' do 
     specify do
       subject.scope_user :user do |user|
-        user.candidate.should == subject.current_admin
+        user.subject.should == subject.current_user
       end
     end
   end
@@ -34,7 +34,7 @@ describe CanTango::Api::Scope::User do
   describe 'real_user(scope, options)' do
     specify do
       subject.real_user :user do |user|
-        user.candidate.should == subject.current_user
+        user.subject.should == subject.current_user
       end
     end
   end

@@ -30,7 +30,7 @@ describe CanTango::Api::Scope::Account do
   describe 'scope_account(scope, options)' do 
     specify do
       subject.scope_account :user do |ability|
-        ability.subject.class.should == subject.current_user_account.class
+        ability.subject.should == subject.current_user_account
       end
     end
   end
@@ -38,7 +38,7 @@ describe CanTango::Api::Scope::Account do
   describe 'real_account(scope, options)' do
     specify do
       subject.real_account :admin do |ability|
-        ability.subject.class.should == subject.current_admin_account.class
+        ability.subject.should == subject.current_admin_account
       end
     end
   end

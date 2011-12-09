@@ -3,6 +3,5 @@ module CanTango::Macros
     def tango_user options = {}
       self.send :include, CanTango::Api::Model::User
     end
-    alias_method :cantango_user, :tango_user
   end
 end
