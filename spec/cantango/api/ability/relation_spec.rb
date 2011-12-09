@@ -59,33 +59,32 @@ describe CanTango::Api::Ability::Relation do
     specify { subject.scope.should == @scope }
     specify { subject.models.should include Project }
   end
+
+  describe 'using Adaptor' do
+    before do
+      @obj = subject.send :user_scope
+    end
+
+    specify { @obj.should == @user }
+    specify { subject.adaptor_for(@obj).should == CanTango::Adaptor::Generic }
+    specify { subject.adaptor_type.should == :generic }
+  end
+
+  describe 'can(action)' do
+    specify { subject.send(:rules).should be_empty }
+    specify { subject.can(:edit).send(:rules).should_not be_empty }    
+  end
   
-  #   describe 'owner_of(model)' do
-  #     describe 'can' do
-  #       before do
-  #         subject.owner_of(Post).can(:edit)
-  #       end
-  #       specify { subject.can?(:edit, Post).should be_true }
-  #     end
-  # 
-  #     describe 'cannot' do
-  #       before do
-  #         subject.owner_of(Post).can(:edit)
-  #       end
-  #       specify { subject.can?(:edit, Post).should be_true }
-  #     end
-  # 
-  #     describe 'block' do
-  #       before do
-  #         subject.owner_of(Post) do |owner|
-  #           owner.can(:edit)
-  #           owner.cannot(:publish)
-  #         end
-  #       end
-  #       specify { subject.can?(:edit, Post).should be_true }
-  #       specify { subject.can?(:publish, Post).should be_false }
-  #       specify { subject.cannot?(:publish, Post).should be_true }
-  #     end
-  #   end
-  # end  
+  describe 'cannot(action)' do
+    specify { subject.send(:rules).should be_empty }
+    specify { subject.cannot(:edit).send(:rules).should_not be_empty }        
+  end
+
+  describe 'category(action)' do
+    pending
+  end
+
+  describe 'any(action)' do    
+    pending
+  end
 end

@@ -7,7 +7,7 @@ group :default do
   gem 'hashie',           '~> 1.2'
   
   gem 'cantango-config',  '>= 0.1.9.2'
-  gem 'cantango-core',    '>= 0.1.9.2'
+  gem 'cantango-core',    '>= 0.1.9.3'
 end
 
 group :development do

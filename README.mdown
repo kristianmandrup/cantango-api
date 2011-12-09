@@ -100,7 +100,6 @@ Each of these have a specific variant for both `Account` and `User`.
   * Relation
   * Scope
 
-The Dsl API extends the Ability API with Relation and Scope APIs.
 
 ### Account
 
@@ -117,6 +116,8 @@ current_user_ability(:editor)
 ```
 
 ### Dsl
+
+The Dsl API extends the Ability API with *Relation* and *Scope* APIs.
 
 Note that the Dsl module is currently being developed... stay tuned!
 
@@ -152,8 +153,13 @@ Do relationship on Ability `#account`
 
 ```ruby
 scope :account do |account|
-  account.owner_of(Post).can :edit
-  account.owner_of(Post).cannot :publish
+  account.owner_of(Post) do |owner|
+    owner.can :edit
+  	owner.cannot :publish
+  end
+
+  account.can :create, [Blog, Article]
+  account.cannot [:create, :delete], User
   # ...
 end
 ```
@@ -166,7 +172,7 @@ end
 
 ### Account
 
-Presuming we have registered the following types of accounts:
+Assuming we have registered the following types of accounts:
 
 `CanTango.config.accounts.registered # => [:user, admin]`
 
@@ -201,7 +207,6 @@ admin_can? *args
 
 user_cannot? *args
 admin_cannot? *args
-
 ```
 
 It is up to the developer to make the following methods available. 
@@ -218,7 +223,7 @@ current_admin
   * Account
   * User
 
-Note: The Macros for User and Account might be put here later
+Note: The Macros for `User` and `Account` (tango_user, tango_account, ...) might be moved under this namespace later.
 
 ### Account
 

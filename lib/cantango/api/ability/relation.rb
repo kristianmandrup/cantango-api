@@ -19,16 +19,20 @@ module CanTango::Api::Ability
       use_adaptor! self, user_scope
     end
 
+    delegate :category, :any, :to => :ability
+
     def can(action)
       models.each do |model|
         rules << rule_class.new(true, action, model, nil, condition_block(model))
       end
+      self
     end
 
     def cannot(action)
       models.each do |model|
         rules << rule_class.new(false, action, model, nil, condition_block(model))
       end
+      self
     end
 
     protected
