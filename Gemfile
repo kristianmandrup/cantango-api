@@ -6,8 +6,8 @@ group :default do
   gem 'sweetloader',      '~> 0.1.6'
   gem 'hashie',           '~> 1.2'
   
-  gem 'cantango-config',  '>= 0.1.8.1'
-  gem 'cantango-core',    '>= 0.1.9.1'
+  gem 'cantango-config',  '>= 0.1.9.2'
+  gem 'cantango-core',    '>= 0.1.9.2'
 end
 
 group :development do
@@ -19,7 +19,7 @@ end
 group :test do
   gem 'require_all', '~> 1.2.0'
 
-  gem 'cantango-masquerade', '~> 0.1.1'
+  gem 'cantango-masquerade', '>= 0.1.3.2'
 
   gem 'forgery'
   gem 'sqlite3'
