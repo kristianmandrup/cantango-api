@@ -6,7 +6,7 @@ module CanTango::Api::Ability::Dsl
           def #{relationship}_of *models, &block
             options = models.extract_options!
             scope = options[:scope] || :user
-            relation = Relation.new :#{relationship}, self, scope, *models, &block
+            relation = CanTango::Api::Ability::Relation.new :#{relationship}, self, scope, *models, &block
             yield relation if block
             relation
           end

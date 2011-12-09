@@ -1,29 +1,38 @@
-require 'cantango/config'
+require 'spec_helper'
 require 'fixtures/models'
+require 'cantango/api/ability/dsl/relationship_ex'
 
 class User
-  include_and_extend SimpleRoles
+  cantango
 end
 
-class Admin < User
-end
+module CanTango::Ability
+  class Base
+    include CanTango::Api::Ability::Dsl
 
-CanTango.configure do |config|
-  config.users.register     :user, User
-  config.users.register     :admin, Admin
-end
+    def user
+      candidate
+    end
 
-require 'spec_helper'
-require 'helpers/current_user_accounts'
-
-class Context
-  include CanTango::Api::Ability::User
-
-  include_and_extend ::CurrentUsers
+    def account
+      candidate
+    end
+  end
 end
 
 describe CanTango::Api::Ability::Dsl do
-  subject { Context.new }
+  before do
+    @user = User.new 'krisy', 'krisy@gmail.com'
+  end
+  subject { CanTango::Ability::Base.new @user }
 
-
+  it_should_behave_like 'CanTango::Api::Ability::Dsl::Relationship'
+  
+  describe 'scope name, &block' do
+    specify do
+      subject.scope :user do |scope|
+        scope.should be_a CanTango::Api::Ability::Scope
+      end
+    end
+  end
 end

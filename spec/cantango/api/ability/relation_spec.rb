@@ -1,4 +1,4 @@
-require 'cantango/config'
+require 'spec_helper'
 require 'fixtures/models'
 
 class User
