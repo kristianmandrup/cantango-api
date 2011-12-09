@@ -4,8 +4,8 @@ The main API for [CanTango](https://github.com/kristianmandrup/cantango)
 
 ## Status: Dec 9 2011
 
-The CanTango API has now been almost fully spec'ed. 
-All specs except for CanTango::Ability::Dsl now pass :) 
+The CanTango API has now been fully spec'ed and works as it should. 
+There are even specs that demonstrate integration with [CanTango Masquerade](https://github.com/kristianmandrup/cantango-masquerade)
 
 ## Dependencies
 
@@ -15,7 +15,7 @@ This extension depends on the CanTango [core](https://github.com/kristianmandrup
 
 Macro modules
 
-* CanTango::Api::Macros::
+* CanTango::Api::Macros
   * Account
   * User
   * Clazz
@@ -81,7 +81,7 @@ end
 
 The main API consists of the following:
 
-* CanTango::Api::
+* CanTango::Api
   * Ability
   * Can
   * Model
@@ -158,7 +158,7 @@ Do relationship on Ability `#account`
 scope :account do |account|
   account.owner_of(Post) do |owner|
     owner.can :edit
-  	owner.cannot :publish
+    owner.cannot :publish
   end
 
   account.can :create, [Blog, Article]
@@ -320,7 +320,7 @@ active_user= user
 `#any_user` will return the first user for which a name matches. If no user matches are found it will default to return the guest user. To find users, it will use the `#current_[user type]` methods.
 
 
-## Contributing to cantango-api
+## Contributing to Cantango Api
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
