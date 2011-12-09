@@ -2,9 +2,9 @@
 
 The main API for [CanTango](https://github.com/kristianmandrup/cantango)
 
-## Status: Dec 1 2011
+## Status: Dec 9 2011
 
-The API is being spec'ed...
+The CanTango API has now been fully spec'ed and all specs pass :) 
 
 ## Dependencies
 
@@ -15,26 +15,55 @@ This extension depends on the CanTango [core](https://github.com/kristianmandrup
 * Macros
   * User
   * Account
+  * Clazz
 
-These macros allow registration os CanTango User and Account models.
+These macros allow registration of CanTango User and Account models.
 
-Usage example:
+### User model registration
 
 ```ruby
 class User
-	tango_user 
+  tango_user 
 end
 
 class Admin
-	tango_user 
+  tango_user 
 end
+```
 
+### Account model registration
+
+````ruby
 class UserAccount
-	tango_account
+  tango_account
 end
 
 class AdminAccount
-	tango_account
+  tango_account
+end
+
+# if masquerading enabled via 'cantango-masquerade' gem
+class PublisherAccount
+  tango_account :masquerade
+end
+```
+
+### Generic model registration
+
+The Clazz macro module uses naming conventions to determine if the model is a User or Account model.
+
+````ruby
+class UserAccount
+  cantango
+end
+
+class Admin
+  cantango
+end
+
+# if masquerading enabled via 'cantango-masquerade' gem
+class PublisherAccount
+  cantango :masquerade
 end
 ```
 
@@ -50,30 +79,51 @@ The main API consists of the following:
 
 Each of these have a specific variant for both `Account` and `User`.
 
+## Ability
+
+* Account
+* User
+* Dsl
+  * Relationship
+* Relation
+* Scope
+
+The Dsl API extends the Ability API with Relation and Scope APIs.
+
+### Account
+
+```ruby
+#account_ability(current_account)
+#current_account_ability(:admin)
+```
+
+### User
+
+```ruby
+#user_ability(current_user)
+#current_user_ability(:editor)
+```
+
+
 ### Can API
 
-* Dsl
-  * Relation
-  * Scope
-
-The Dsl API extends the CanCan Ability API with Relation and Scope APIs.
+* Account
+* User
 
 ## Model APIs
 
 * Account
 * User
 
-Use by including the `All` module
+## Scope APIs
 
-Usage example: 
+* Account
+* User
 
-```ruby
-class User
-  include Cantango::Api::User::All
-end
-```
+## Session APIs
 
-Note: The `tango_user` and `tango_account` macros should include the relevant All module.
+* Account
+* User
 
 ## Contributing to cantango-api
  
