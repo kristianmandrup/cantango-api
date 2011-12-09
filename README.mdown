@@ -22,7 +22,7 @@ Macro modules
 
 These macro modules allow registration of CanTango User and Account models.
 
-Note: These should perhaps be rapped in a `Model` namespace? See '-core'
+Note: These should perhaps be wrapped in a `Model` namespace? See '-core'
 
 ### Account model registration
 
@@ -60,7 +60,7 @@ end
 
 ### Generic model registration
 
-The Clazz macro module uses naming conventions to determine if the model is a User or Account model.
+The `Clazz` macro module uses naming conventions to determine if the model is a User or Account model.
 
 ````ruby
 class UserAccount
@@ -117,9 +117,8 @@ current_user_ability(:editor)
 
 ### Dsl
 
-The Dsl API extends the Ability API with *Relation* and *Scope* APIs.
-
-Note that the Dsl module is currently being developed... stay tuned!
+The Dsl API extends the Ability API with *Relation* and *Scope* APIs. 
+When The `Ability::Dsl` module is included, both these APIs are included into the target.
 
 ### Dsl - Relation
 
@@ -132,6 +131,8 @@ owner_of(Post). do |owner|
   owner.cannot :publish
 end
 ```
+
+This DSL creates a `Relation` object with #can and #cannot methods that delegate the wrapped ability.
 
 ### Dsl - Scope
 
@@ -148,6 +149,8 @@ scope :user do |user|
   end
 end
 ```
+
+This DSL creates a `Scope` object that wraps an ability. It also includes the Relation API.
 
 Do relationship on Ability `#account`
 
