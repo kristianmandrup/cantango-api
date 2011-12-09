@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{cantango-api}
-  s.version = "0.1.2"
+  s.version = "0.1.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Kristian Mandrup}]
@@ -29,14 +29,15 @@ Gem::Specification.new do |s|
     "lib/cantango/api.rb",
     "lib/cantango/api/ability.rb",
     "lib/cantango/api/ability/account.rb",
+    "lib/cantango/api/ability/dsl.rb",
+    "lib/cantango/api/ability/dsl/relationship.rb",
+    "lib/cantango/api/ability/relation.rb",
+    "lib/cantango/api/ability/scope.rb",
     "lib/cantango/api/ability/user.rb",
     "lib/cantango/api/account.rb",
     "lib/cantango/api/attributes.rb",
     "lib/cantango/api/can.rb",
     "lib/cantango/api/can/account.rb",
-    "lib/cantango/api/can/dsl.rb",
-    "lib/cantango/api/can/dsl/relation.rb",
-    "lib/cantango/api/can/dsl/scope.rb",
     "lib/cantango/api/can/user.rb",
     "lib/cantango/api/common.rb",
     "lib/cantango/api/model.rb",
@@ -56,6 +57,11 @@ Gem::Specification.new do |s|
     "lib/cantango/api_ext/macros/clazz.rb",
     "lib/cantango/api_ext/macros/user.rb",
     "spec/cantango/api/ability/account_spec.rb",
+    "spec/cantango/api/ability/dsl/relationship_ex.rb",
+    "spec/cantango/api/ability/dsl/relationship_spec.rb",
+    "spec/cantango/api/ability/dsl_spec.rb",
+    "spec/cantango/api/ability/relation_spec.rb",
+    "spec/cantango/api/ability/scope_spec.rb",
     "spec/cantango/api/ability/user_spec.rb",
     "spec/cantango/api/account_spec.rb",
     "spec/cantango/api/attributes_spec.rb",
@@ -103,7 +109,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<sweetloader>, ["~> 0.1.6"])
       s.add_runtime_dependency(%q<hashie>, ["~> 1.2"])
       s.add_runtime_dependency(%q<cantango-config>, [">= 0.1.9.2"])
-      s.add_runtime_dependency(%q<cantango-core>, [">= 0.1.9.2"])
+      s.add_runtime_dependency(%q<cantango-core>, [">= 0.1.9.3"])
       s.add_development_dependency(%q<bundler>, [">= 1.1.rc"])
       s.add_development_dependency(%q<jeweler>, [">= 1.6.4"])
       s.add_development_dependency(%q<rcov>, [">= 0"])
@@ -114,7 +120,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<sweetloader>, ["~> 0.1.6"])
       s.add_dependency(%q<hashie>, ["~> 1.2"])
       s.add_dependency(%q<cantango-config>, [">= 0.1.9.2"])
-      s.add_dependency(%q<cantango-core>, [">= 0.1.9.2"])
+      s.add_dependency(%q<cantango-core>, [">= 0.1.9.3"])
       s.add_dependency(%q<bundler>, [">= 1.1.rc"])
       s.add_dependency(%q<jeweler>, [">= 1.6.4"])
       s.add_dependency(%q<rcov>, [">= 0"])
@@ -126,7 +132,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<sweetloader>, ["~> 0.1.6"])
     s.add_dependency(%q<hashie>, ["~> 1.2"])
     s.add_dependency(%q<cantango-config>, [">= 0.1.9.2"])
-    s.add_dependency(%q<cantango-core>, [">= 0.1.9.2"])
+    s.add_dependency(%q<cantango-core>, [">= 0.1.9.3"])
     s.add_dependency(%q<bundler>, [">= 1.1.rc"])
     s.add_dependency(%q<jeweler>, [">= 1.6.4"])
     s.add_dependency(%q<rcov>, [">= 0"])
